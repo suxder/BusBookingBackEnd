@@ -24,6 +24,5 @@ app.on('error', (err, ctx) => {
 });
 
 app.listen(port, host, () => {
-  // eslint-disable-next-line no-console
   console.log(`API server listening on ${host}:${port}`);
 });

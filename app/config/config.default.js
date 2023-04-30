@@ -4,7 +4,7 @@ const productConfig = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'blog',
+    database: 'busbooking',
     connectionLimit: 10
   }
 };
@@ -15,7 +15,7 @@ const localConfig = {
     host: 'localhost',
     user: 'root',
     password: 'root',
-    database: 'blog',
+    database: 'busbooking',
     connectionLimit: 10
   }
 };
