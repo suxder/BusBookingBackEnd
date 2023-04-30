@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./sequelize');
+const { User, SuperAdmin, PTCAdmin } = require('../model/index');
 
 const UserService = {
   async findOne (tel, pwd) {
@@ -9,7 +10,7 @@ const UserService = {
     SELECT 'ptc_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM ptc_admin
     UNION
     SELECT 'super_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM super_admin
-    WHERE  telphone = '${tel}';
+    WHERE  telephone = '${tel}';
     `;
     // 一段平淡无奇的 SQL 查询语句
     try {
@@ -29,6 +30,30 @@ const UserService = {
         success: 0,
         msg: `Service error: ${error}`
       };
+    }
+  },
+  async getInfoByID (id, type) {
+    if (type === 0) {
+      const res = await User.findOne({
+        where: {
+          userID: id
+        }
+      });
+      return res;
+    } else if (type === 1) {
+      const res = await PTCAdmin.findOne({
+        where: {
+          adminID: id
+        }
+      });
+      return res;
+    } else if (type === 2) {
+      const res = await SuperAdmin.findOne({
+        where: {
+          adminID: id
+        }
+      });
+      return res;
     }
   }
 };
