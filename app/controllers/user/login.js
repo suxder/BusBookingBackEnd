@@ -4,17 +4,17 @@ const { UserService } = require('../../service');
 const jwt = require('jsonwebtoken');
 
 const login = async ctx => {
-  const { email, pwd } = ctx.request.body;
+  const { tel, pwd } = ctx.request.body;
   // 使用service方法，得到查询结果
-  const res = await UserService.findOne(email, pwd);
+  const res = await UserService.findOne(tel, pwd);
   if (res.length > 0) {
-    const hashedPassword = res[0].hashedPassword;
+    const hashedPassword = res[0].pwd;
     const salt = res[0].salt;
     const hashPassword = ctx.utils.encryptPassword(pwd, salt);
     if (hashedPassword === hashPassword) {
       // 用户token
       const userToken = {
-        name: email,
+        name: tel,
         id: res[0].id
       };
       // 签发token

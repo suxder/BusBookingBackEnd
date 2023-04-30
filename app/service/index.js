@@ -2,14 +2,14 @@ const Sequelize = require('sequelize');
 const sequelize = require('./sequelize');
 
 const UserService = {
-  async findOne (email, pwd) {
+  async findOne (tel, pwd) {
     const sql = `
-      SELECT
-        id, hashedPassword, salt
-      FROM
-        user
-      WHERE
-        email = '${email}'
+    SELECT 'user' AS TYPE, userID AS id, userPwd AS pwd, salt, userRole FROM USER
+    UNION
+    SELECT 'ptc_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM ptc_admin
+    UNION
+    SELECT 'super_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM super_admin
+    WHERE  telphone = '${tel}';
     `;
     // 一段平淡无奇的 SQL 查询语句
     try {
