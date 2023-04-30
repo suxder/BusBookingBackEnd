@@ -19,18 +19,23 @@ const login = async ctx => {
       };
       // 签发token
       const token = jwt.sign(userToken, ctx.config.tokenSecret, { expiresIn: '2h' });
+      // 成功返回
       ctx.body = {
-        success: 1,
+        id: res[0].id,
+        role: res[0].userRole,
         token: token,
-        message: '登陆成功'
+        success: 1,
+        msg: '登录成功'
       };
     } else {
+      // 失败返回
       ctx.body = {
         success: 0,
         msg: '用户名或密码错误'
       };
     }
   } else {
+    // 失败返回
     ctx.body = {
       success: 0,
       msg: '用户名或密码错误'

@@ -2,7 +2,7 @@ const Joi = require('@hapi/joi');
 
 const login = {
   body: Joi.object({
-    email: Joi.string().required(),
+    tel: Joi.string().required(),
     pwd: Joi.string().required()
   })
 };
