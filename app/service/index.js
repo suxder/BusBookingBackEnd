@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./sequelize');
+const utils = require('../common/utils');
 const { User, SuperAdmin, PTCAdmin } = require('../model/index');
 
 const UserService = {
@@ -93,7 +94,26 @@ const PostService = {
   }
 };
 
+const SuperAdminService = {
+  async createPtcAdmin (adminName, telephone, adminPwd, adminPtc) {
+    // 组织新增的Ptc管理员信息
+    const salt = utils.makeSalt();
+    const hashedAdminPwd = utils.encryptPassword(adminPwd, salt);
+    const PtcAdmin = {
+      adminName: adminName,
+      telephone: telephone,
+      adminPwd: hashedAdminPwd,
+      adminRole: 1,
+      adminPtc: adminPtc,
+      salt: salt
+    };
+    const { dataValues: res } = await PTCAdmin.create(PtcAdmin);
+    return res;
+  }
+};
+
 module.exports = {
   UserService,
-  PostService
+  PostService,
+  SuperAdminService
 };

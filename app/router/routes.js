@@ -1,5 +1,5 @@
-const { login, logout, getInfoByID } = require('../controllers');
-const { scmUser } = require('../schema/index');
+const { login, logout, getInfoByID, createPtcAdmin } = require('../controllers');
+const { scmUser, scmSuperAdmin } = require('../schema/index');
 
 const routes = [
   {
@@ -21,6 +21,13 @@ const routes = [
     path: '/user/getInfoByID',
     valid: scmUser.getInfoByID,
     controller: getInfoByID
+  },
+  {
+    // 超级管理员添加Ptc管理员
+    method: 'post',
+    path: '/superAdmin/createPtcAdmin',
+    valid: scmSuperAdmin.createPtcAdmin,
+    controller: createPtcAdmin
   }
 ];
 

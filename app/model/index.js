@@ -145,6 +145,18 @@ const PTCAdmin = sequelize.define('ptc_admin', {
   salt: {
     type: DataTypes.STRING
   }
+}, {
+  // 使用自定义表名
+  freezeTableName: true,
+  // 去掉默认的添加时间和更新时间
+  timestamps: false,
+  indexes: [
+    // 普通索引,默认BTREE
+    {
+      unique: true,
+      fields: [ 'adminID', 'telephone' ]
+    }
+  ]
 });
 
 // 模型同步

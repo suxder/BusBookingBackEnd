@@ -27,8 +27,7 @@ const makeSalt = () => {
  */
 const encryptPassword = (password, salt) => {
   if (!password || !salt) return '';
-  // eslint-disable-next-line node/no-deprecated-api
-  const saltBuf = new Buffer(salt, 'base64');
+  const saltBuf = Buffer.from(salt, 'base64');
   return crypto
     .pbkdf2Sync(password, saltBuf, 10000, 64, 'sha1')
     .toString('base64');
