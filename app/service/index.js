@@ -33,25 +33,28 @@ const UserService = {
     }
   },
   async getInfoByID (id, type) {
-    if (type === 0) {
-      const res = await User.findOne({
+    if (parseInt(type) === 0) {
+      const { dataValues: res } = await User.findOne({
         where: {
           userID: id
-        }
+        },
+        attributes: { exclude: [ 'userPwd', 'salt' ] }
       });
       return res;
-    } else if (type === 1) {
-      const res = await PTCAdmin.findOne({
+    } else if (parseInt(type) === 1) {
+      const { dataValues: res } = await PTCAdmin.findOne({
         where: {
           adminID: id
-        }
+        },
+        attributes: { exclude: [ 'adminPwd', 'salt' ] }
       });
       return res;
-    } else if (type === 2) {
-      const res = await SuperAdmin.findOne({
+    } else if (parseInt(type) === 2) {
+      const { dataValues: res } = await SuperAdmin.findOne({
         where: {
           adminID: id
-        }
+        },
+        attributes: { exclude: [ 'adminPwd', 'salt' ] }
       });
       return res;
     }

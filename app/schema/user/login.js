@@ -7,6 +7,14 @@ const login = {
   })
 };
 
+const getInfoByID = {
+  body: Joi.object({
+    id: Joi.number().required(),
+    type: Joi.number().required()
+  })
+};
+
 module.exports = {
-  login
+  login,
+  getInfoByID
 };

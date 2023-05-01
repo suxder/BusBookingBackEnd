@@ -1,4 +1,4 @@
-const { login, logout } = require('../controllers');
+const { login, logout, getInfoByID } = require('../controllers');
 const { scmUser } = require('../schema/index');
 
 const routes = [
@@ -14,6 +14,13 @@ const routes = [
     method: 'get',
     path: '/user/logout',
     controller: logout
+  },
+  {
+    // 根据用户ID查询用户信息
+    method: 'post',
+    path: '/user/getInfoByID',
+    valid: scmUser.getInfoByID,
+    controller: getInfoByID
   }
 ];
 
