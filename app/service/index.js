@@ -59,6 +59,23 @@ const UserService = {
       });
       return res;
     }
+  },
+  async userSignUp (telephone, userPwd, userName, userGender, userIDCard, userEmail, userAddress) {
+    const salt = utils.makeSalt();
+    const hashedUserPwd = utils.encryptPassword(userPwd, salt);
+    const user = {
+      telephone: telephone,
+      userPwd: hashedUserPwd,
+      userName: userName,
+      userGender: parseInt(userGender),
+      userIDCard: userIDCard,
+      userEmail: userEmail,
+      userAddress: userAddress,
+      salt: salt,
+      userRole: 0
+    };
+    const { dataValues: res } = await User.create(user);
+    return res;
   }
 };
 

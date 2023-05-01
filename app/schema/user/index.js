@@ -1,6 +1,7 @@
-const { login, getInfoByID } = require('./login');
+const { login, getInfoByID, userSignUp } = require('./login');
 
 module.exports = {
   login,
-  getInfoByID
+  getInfoByID,
+  userSignUp
 };

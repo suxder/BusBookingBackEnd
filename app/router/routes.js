@@ -1,4 +1,4 @@
-const { login, logout, getInfoByID, createPtcAdmin } = require('../controllers');
+const { login, logout, getInfoByID, createPtcAdmin, userSignUp } = require('../controllers');
 const { scmUser, scmSuperAdmin } = require('../schema/index');
 
 const routes = [
@@ -14,6 +14,13 @@ const routes = [
     method: 'get',
     path: '/user/logout',
     controller: logout
+  },
+  {
+    // 用户注册
+    method: 'post',
+    path: '/user/signup',
+    valid: scmUser.userSignUp,
+    controller: userSignUp
   },
   {
     // 根据用户ID查询用户信息

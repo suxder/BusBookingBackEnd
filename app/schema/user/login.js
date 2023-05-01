@@ -14,7 +14,20 @@ const getInfoByID = {
   })
 };
 
+const userSignUp = {
+  body: Joi.object({
+    telephone: Joi.string().required(),
+    userPwd: Joi.string().required(),
+    userName: Joi.string().required(),
+    userGender: Joi.number().required(),
+    userIDCard: Joi.string().required(),
+    userEmail: Joi.string().required(),
+    userAddress: Joi.string().required()
+  })
+};
+
 module.exports = {
   login,
-  getInfoByID
+  getInfoByID,
+  userSignUp
 };
