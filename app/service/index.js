@@ -7,14 +7,17 @@ const UserService = {
   async findOne (tel, pwd) {
     const sql = `
     SELECT 'user' AS TYPE, userID AS id, userPwd AS pwd, salt, userRole FROM USER
+    WHERE  telephone = '${tel}'
     UNION
     SELECT 'ptc_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM ptc_admin
+    WHERE  telephone = '${tel}'
     UNION
     SELECT 'super_admin' AS TYPE, adminID AS id, adminPwd AS pwd, salt, adminRole AS userRole FROM super_admin
-    WHERE  telephone = '${tel}';
+    WHERE  telephone = '${tel}'
     `;
     // 一段平淡无奇的 SQL 查询语句
     try {
+      console.log(tel);
       const res = await sequelize.query(sql, {
         type: Sequelize.QueryTypes.SELECT,
         // 查询方式
@@ -25,6 +28,7 @@ const UserService = {
       });
       const user = res;
       // 直接返回查询后的结果。
+      console.log(res);
       return user;
     } catch (error) {
       return {

@@ -58,7 +58,7 @@ const User = sequelize.define('user', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: [ 'userID', 'telephone' ]
+      fields: ['userID', 'telephone']
     }
   ]
 });
@@ -104,7 +104,7 @@ const SuperAdmin = sequelize.define('super_admin', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: [ 'adminID', 'telephone' ]
+      fields: ['adminID', 'telephone']
     }
   ]
 });
@@ -154,7 +154,7 @@ const PTCAdmin = sequelize.define('ptc_admin', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: [ 'adminID', 'telephone' ]
+      fields: ['adminID', 'telephone']
     }
   ]
 });
