@@ -16,6 +16,10 @@ const User = sequelize.define('user', {
     type: DataTypes.STRING,
     primaryKey: true,
     // 主键
+    allowNull: false,
+    // 主键非空约束
+    unique: true,
+    // 主键唯一性约束
     comment: '用户电话号码'
   },
   userName: {
@@ -32,6 +36,10 @@ const User = sequelize.define('user', {
   },
   userIDCard: {
     type: DataTypes.STRING,
+    allowNull: false,
+    // 非空约束
+    unique: true,
+    // 唯一性约束
     comment: '用户身份证号'
   },
   userEmail: {
@@ -58,7 +66,7 @@ const User = sequelize.define('user', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: ['userID', 'telephone']
+      fields: [ 'userID', 'telephone' ]
     }
   ]
 });
@@ -104,7 +112,7 @@ const SuperAdmin = sequelize.define('super_admin', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: ['adminID', 'telephone']
+      fields: [ 'adminID', 'telephone' ]
     }
   ]
 });
@@ -154,7 +162,7 @@ const PTCAdmin = sequelize.define('ptc_admin', {
     // 普通索引,默认BTREE
     {
       unique: true,
-      fields: ['adminID', 'telephone']
+      fields: [ 'adminID', 'telephone' ]
     }
   ]
 });
