@@ -8,7 +8,7 @@ const getInfoByID = async ctx => {
     console.log(res);
     ctx.body = {
       userInfo: res,
-      success: '1'
+      success: 1
     };
   } else {
     ctx.body = {

@@ -1,4 +1,4 @@
-const { login, logout, getInfoByID, createPtcAdmin, userSignUp } = require('../controllers');
+const { login, logout, getInfoByID, createPtcAdmin, userSignUp, queryAllPtcAdmin } = require('../controllers');
 const { scmUser, scmSuperAdmin } = require('../schema/index');
 
 const routes = [
@@ -35,6 +35,12 @@ const routes = [
     path: '/superAdmin/createPtcAdmin',
     valid: scmSuperAdmin.createPtcAdmin,
     controller: createPtcAdmin
+  },
+  {
+    // 超级管理员查询所有Ptc管理员信息
+    method: 'get',
+    path: '/superAdmin/queryAllPtcAdmin',
+    controller: queryAllPtcAdmin
   }
 ];
 

@@ -3,6 +3,7 @@ const { getContent } = require('./post/getContent');
 const { logout } = require('./user/logout');
 const { getInfoByID } = require('./user/getInfoByID');
 const { createPtcAdmin } = require('./superAdmin/createPtcAdmin');
+const { queryAllPtcAdmin } = require('./superAdmin/queryAllPtcAdmin');
 const { userSignUp } = require('./user/signUp');
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   logout,
   getInfoByID,
   createPtcAdmin,
-  userSignUp
+  userSignUp,
+  queryAllPtcAdmin
 };

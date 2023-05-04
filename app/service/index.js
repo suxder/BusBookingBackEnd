@@ -130,7 +130,16 @@ const SuperAdminService = {
     };
     const { dataValues: res } = await PTCAdmin.create(PtcAdmin);
     return res;
+  },
+  // 查询所有的PTC管理员
+  async queryAllPtcAdmin () {
+    const data = await PTCAdmin.findAll({
+      attributes: { exclude: [ 'adminPwd', 'salt' ] },
+      raw: true
+    });
+    return data;
   }
+  // 根据PTC管理员信息修改管理员信息
 };
 
 module.exports = {
