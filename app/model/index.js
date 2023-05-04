@@ -136,6 +136,10 @@ const PTCAdmin = sequelize.define('ptc_admin', {
     type: DataTypes.STRING,
     primaryKey: true,
     // 主键
+    allowNull: false,
+    // 主键非空约束
+    unique: true,
+    // 主键唯一性约束
     comment: '管理员电话号码'
   },
   adminPwd: {
