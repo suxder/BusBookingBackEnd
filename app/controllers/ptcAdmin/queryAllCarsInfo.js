@@ -2,6 +2,7 @@
 const { PTCAdminService } = require('../../service/index');
 
 const queryAllCarsInfo = async ctx => {
+  console.log('触发');
   const { adminID } = ctx.request.body;
   const res = await PTCAdminService.queryAllCarsInfo(adminID);
   if (res !== null) {

@@ -239,10 +239,6 @@ const Route = sequelize.define('routes', {
     type: DataTypes.STRING,
     comment: '出发站'
   },
-  routeLength: {
-    type: DataTypes.INTEGER,
-    comment: '路线长'
-  },
   runningTime: {
     type: DataTypes.STRING,
     comment: '运行时长'

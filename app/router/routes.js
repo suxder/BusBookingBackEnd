@@ -55,14 +55,14 @@ const routes = [
   {
     // 客运中心管理员查询车辆信息
     method: 'post',
-    path: 'ptcAdmin/queryAllCars',
+    path: '/ptcAdmin/queryAllCars',
     valid: scmPtcAdmin.queryAllCarsInfo,
     controller: queryAllCarsInfo
   },
   {
     // 客运中心管理员查询路线信息
     method: 'post',
-    path: 'ptcAdmin/queryAllRoutes',
+    path: '/ptcAdmin/queryAllRoutes',
     valid: scmPtcAdmin.queryAllRoutesInfo,
     controller: queryAllRoutesInfo
   }
