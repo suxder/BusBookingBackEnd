@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./sequelize');
 const utils = require('../common/utils');
-const { User, SuperAdmin, PTCAdmin } = require('../model/index');
+const { User, SuperAdmin, PTCAdmin, Car, Route } = require('../model/index');
 
 const UserService = {
   async findOne (tel, pwd) {
@@ -153,8 +153,61 @@ const SuperAdminService = {
   }
 };
 
+const PTCAdminService = {
+  // 根据管理员ID查询车辆表数据
+  async queryAllCarsInfo (adminID) {
+    const data = await Car.findAll({
+      where: {
+        adminID: adminID
+      },
+      attributes: { exclude: [ 'adminID' ] },
+      raw: true
+    });
+    return data;
+  },
+  // 插入车辆数据
+  async createCar (adminID, carLPN, seatsNum, carType) {
+    const car = {
+      adminID: adminID,
+      carLPN: carLPN,
+      seatsNum: seatsNum,
+      carType: carType
+    };
+    const data = await Car.create(car, {
+      raw: true
+    });
+    return data;
+  },
+  // 根据管理员ID查询路线表数据
+  async queryAllRoutesInfo (adminID) {
+    const data = await Route.findAll({
+      where: {
+        adminID: adminID
+      },
+      attributes: { exclude: [ 'adminID' ] },
+      raw: true
+    });
+    return data;
+  },
+  // 插入路线数据
+  async createRoute (adminID, departureStation, terminalStation, routeLength, runningTime) {
+    const route = {
+      adminID: adminID,
+      departureStation: departureStation,
+      terminalStation: terminalStation,
+      routeLength: routeLength,
+      runningTime: runningTime
+    };
+    const data = await Route.create(route, {
+      raw: true
+    });
+    return data;
+  }
+};
+
 module.exports = {
   UserService,
   PostService,
-  SuperAdminService
+  SuperAdminService,
+  PTCAdminService
 };

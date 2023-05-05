@@ -171,6 +171,96 @@ const PTCAdmin = sequelize.define('ptc_admin', {
   ]
 });
 
+// 建立车辆模型
+const Car = sequelize.define('cars', {
+  adminID: {
+    type: DataTypes.INTEGER,
+    comment: '客运中心管理员ID'
+    // 注释:只在代码中有效
+  },
+  carID: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+    comment: '车辆ID'
+  },
+  carLPN: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    // 主键非空约束
+    unique: true,
+    // 主键唯一性约束
+    comment: '车辆车牌号'
+  },
+  seatsNum: {
+    type: DataTypes.INTEGER,
+    comment: '座位数量'
+  },
+  carType: {
+    type: DataTypes.STRING,
+    comment: '车辆类型（小型客车、中型客车、大型客车）'
+  }
+}, {
+  // 使用自定义表名
+  freezeTableName: true,
+  // 去掉默认的添加时间和更新时间
+  timestamps: false,
+  indexes: [
+    // 普通索引,默认BTREE
+    {
+      unique: true,
+      fields: [ 'carID' ]
+    }
+  ]
+});
+
+// 建立路线模型
+const Route = sequelize.define('routes', {
+  adminID: {
+    type: DataTypes.INTEGER,
+    comment: '客运中心管理员ID'
+    // 注释:只在代码中有效
+  },
+  routeID: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
+    unique: true,
+    comment: '路线ID'
+  },
+  departureStation: {
+    type: DataTypes.STRING,
+    comment: '出发站'
+  },
+  terminalStation: {
+    type: DataTypes.STRING,
+    comment: '出发站'
+  },
+  routeLength: {
+    type: DataTypes.INTEGER,
+    comment: '路线长'
+  },
+  runningTime: {
+    type: DataTypes.STRING,
+    comment: '运行时长'
+  }
+}, {
+  // 使用自定义表名
+  freezeTableName: true,
+  // 去掉默认的添加时间和更新时间
+  timestamps: false,
+  indexes: [
+    // 普通索引,默认BTREE
+    {
+      unique: true,
+      fields: [ 'routeID' ]
+    }
+  ]
+});
+
 // 模型同步
 (async () => {
   await sequelize.sync();
@@ -179,5 +269,7 @@ const PTCAdmin = sequelize.define('ptc_admin', {
 module.exports = {
   User,
   SuperAdmin,
-  PTCAdmin
+  PTCAdmin,
+  Car,
+  Route
 };

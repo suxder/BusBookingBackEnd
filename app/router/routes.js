@@ -1,5 +1,8 @@
-const { login, logout, getInfoByID, createPtcAdmin, userSignUp, queryAllPtcAdmin, updatePtcAdmin } = require('../controllers');
-const { scmUser, scmSuperAdmin } = require('../schema/index');
+const {
+  login, logout, getInfoByID, createPtcAdmin, userSignUp,
+  queryAllPtcAdmin, updatePtcAdmin, queryAllCarsInfo, queryAllRoutesInfo
+} = require('../controllers');
+const { scmUser, scmSuperAdmin, scmPtcAdmin } = require('../schema/index');
 
 const routes = [
   {
@@ -48,6 +51,20 @@ const routes = [
     path: '/superAdmin/updatePtcAdmin',
     valid: scmSuperAdmin.updatePtcAdmin,
     controller: updatePtcAdmin
+  },
+  {
+    // 客运中心管理员查询车辆信息
+    method: 'post',
+    path: 'ptcAdmin/queryAllCars',
+    valid: scmPtcAdmin.queryAllCarsInfo,
+    controller: queryAllCarsInfo
+  },
+  {
+    // 客运中心管理员查询路线信息
+    method: 'post',
+    path: 'ptcAdmin/queryAllRoutes',
+    valid: scmPtcAdmin.queryAllRoutesInfo,
+    controller: queryAllRoutesInfo
   }
 ];
 
