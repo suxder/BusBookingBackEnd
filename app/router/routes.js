@@ -1,4 +1,4 @@
-const { login, logout, getInfoByID, createPtcAdmin, userSignUp, queryAllPtcAdmin } = require('../controllers');
+const { login, logout, getInfoByID, createPtcAdmin, userSignUp, queryAllPtcAdmin, updatePtcAdmin } = require('../controllers');
 const { scmUser, scmSuperAdmin } = require('../schema/index');
 
 const routes = [
@@ -41,6 +41,13 @@ const routes = [
     method: 'get',
     path: '/superAdmin/queryAllPtcAdmin',
     controller: queryAllPtcAdmin
+  },
+  {
+    // 超级管理员根据ID更新PTC管理员信息
+    method: 'post',
+    path: '/superAdmin/updatePtcAdmin',
+    valid: scmSuperAdmin.updatePtcAdmin,
+    controller: updatePtcAdmin
   }
 ];
 

@@ -138,8 +138,19 @@ const SuperAdminService = {
       raw: true
     });
     return data;
-  }
+  },
   // 根据PTC管理员信息修改管理员信息
+  async updatePtcAdminByID (id, telephone, adminPtc, adminName) {
+    await PTCAdmin.update({
+      telephone: telephone,
+      adminPtc: adminPtc,
+      adminName: adminName
+    }, {
+      where: {
+        adminID: id
+      }
+    });
+  }
 };
 
 module.exports = {
